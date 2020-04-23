@@ -36,7 +36,7 @@
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
-			<version>2.9.1</version>
+			<version>2.9.10.4</version>
 		</dependency>
 
 		<!--3.0版本以上提供@WebServlet、@WebFilter、@WebListener等注解 -->
