@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sl.dao.ArticleDao"  >
+
+    <insert id="insert" parameterType="Article">
+		INSERT INTO t_article (
+			title,
+			classify,
+			content
+		) 
+		VALUES (
+			#{title},
+			#{classify},
+			#{content}
+		);
+	</insert>
+	
+	<delete id="delete" parameterType="java.lang.Integer">
+		delete from t_article where id = #{id}
+	</delete>
+	
+	<select id="getById" parameterType="java.lang.Integer" resultType="Article">
+		select * from t_article where id = #{id}
+	</select>
+	
+	<select id="getListByParams" parameterType="Article" resultType="Article">
+		select * from t_article where 1=1
+		
+		<if test="title != null and title != ''">
+			and title like '%'#{title}'%'
+		</if>
+		
+		<if test="classify != null and classify != ''">
+			and classify = #{classify}
+		</if>
+		
+		<if test="content != null and content != ''">
+			and content like '%' #{content} '%'
+		</if>
+	</select>
+	
+	<select id="getAllList" resultType="Article">
+		select * from t_article
+	</select>
+	
+	<update id="update" parameterType="Article">
+		update t_article 
+		<trim prefix="set" suffixOverrides=",">
+			<if test="title != null and title != ''">
+				title = #{title}
+			</if>
+			<if test="classify != null and classify != ''">
+				classify = #{classify}
+			</if>
+			<if test="content != null and content != ''">
+				content = #{content}
+			</if>
+		</trim>
+		where id = #{id}
+	</update>
+	
+</mapper>

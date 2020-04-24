@@ -70,6 +70,8 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation" value="classpath:mybatis-config.xml" />
 		<property name="mapperLocations" value="classpath:mybatis/*.xml" />
+		<!-- 使xml中不用全限定名 -->
+		<property name="typeAliasesPackage" value="com.sl.entity"></property>
 	</bean>
 	 	
 	<!--表示自动扫描con.sl.dao下的每个mapper映射文件 -->
