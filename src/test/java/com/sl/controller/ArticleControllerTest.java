@@ -104,6 +104,6 @@ public class ArticleControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
-        Assert.assertNotNull(result.getModelAndView().getModel().get("page/detail"));
+    	Assert.assertNotNull(result.getModelAndView().getModel().get("article"));
     }
 }
