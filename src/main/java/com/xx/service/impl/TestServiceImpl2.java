@@ -1,4 +1,4 @@
-package com.sl.service.impl;
+package com.xx.service.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,9 +17,9 @@ import com.sl.dao.TestDao;
 import com.sl.service.TestService;
 
 @Service
-public class TestServiceImpl implements TestService{
+public class TestServiceImpl2 implements TestService{
 
-public static Logger logger=LoggerFactory.getLogger(TestServiceImpl.class);
+public static Logger logger=LoggerFactory.getLogger(TestServiceImpl2.class);
 
 	@Autowired
 	private ApplicationContext applicationContext;

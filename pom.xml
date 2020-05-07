@@ -140,7 +140,71 @@
 					<uriEncoding>${project.build.sourceEncoding}</uriEncoding>
 				</configuration>
 			</plugin>
+			
+			<!-- 覆盖率 -->
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.1</version>
+				<executions>
+					<execution>
+						<id>prepare-agent</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>post-unit-test</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+						<configuration>
+							<dataFile>target/jacoco.exec</dataFile>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			
 		</plugins>
 	</build>
-
+	
+	<profiles>
+		<profile>
+		<id>sonar</id>
+		<activation>
+			<activeByDefault>true</activeByDefault>
+		</activation>
+		<properties>
+			<sonar.host.url>
+				http://localhost:9000
+			</sonar.host.url>
+			<sonar.inclusions>
+				src/main/java/com/sl/service/**,
+				src/main/java/com/xx/service/impl/**,
+				src/main/java/com/sl/controller/TestController.java
+			</sonar.inclusions>
+			<sonar.exclusions>
+				src/main/java/com/xx/service/impl/TestServiceImpl3.java
+			</sonar.exclusions> 
+		</properties>
+		<build>
+			<plugins>
+				<plugin>
+					<groupId>org.sonarsource.scanner.maven</groupId>
+					<artifactId>sonar-maven-plugin</artifactId>
+					<version>3.2</version>
+				</plugin>
+			</plugins> 
+		</build>
+		</profile>
+	</profiles>
+	
 </project>

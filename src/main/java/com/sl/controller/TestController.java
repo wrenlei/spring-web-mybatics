@@ -10,7 +10,7 @@ import com.sl.service.TestService;
 @Controller
 @RequestMapping("/test")
 public class TestController {
-
+	
 	@Autowired
 	private TestService testService;
 	
